@@ -17,13 +17,18 @@ mongoose.connect('mongodb+srv://alitalaeeengeneer:ali23fatemeh@cluster.xjbfdup.m
 
 // Declare table to USE
 const animalModel = require('./Model/AnimalModel')
-const { json } = require('express')
 
 // Get Data From DB
 app.get('/animals', async (req, res) => {
     const animals = await animalModel.find()
     res.json(animals)
 })
+// Get One Animal 
+app.put('/animal/get', async (req, res) => {
+    const animals = await animalModel.findById(req.body._id)
+    res.json(animals)
+})
+
 
 // Update DB
 app.put('/animal/update', async (req, res) => {
