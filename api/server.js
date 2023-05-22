@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+require("dotenv").config()
+
 
 // Create an express instance 
 const app = express()
@@ -10,7 +12,7 @@ app.use(express.json())
 
 
 // Create a connection to DB
-mongoose.connect('mongodb+srv://alitalaeeengeneer:ali23fatemeh@cluster.xjbfdup.mongodb.net/animals-blog', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log("DB is connected")).catch(console.error())
@@ -65,7 +67,7 @@ app.post('/animal/new', (req, res) => {
 
 
 // create a server on specific port 
-app.listen(3001, () => { console.log("Server is running at port 3001") })
+app.listen(process.env.PORT, () => { console.log("Server is running at port 3001") })
 
 
 
