@@ -17,6 +17,7 @@ mongoose.connect('mongodb+srv://alitalaeeengeneer:ali23fatemeh@cluster.xjbfdup.m
 
 // Declare table to USE
 const animalModel = require('./Model/AnimalModel')
+const { json } = require('express')
 
 // Get Data From DB
 app.get('/animals', async (req, res) => {
@@ -35,6 +36,25 @@ app.put('/animal/update', async (req, res) => {
     // Save on DB
     animal.save()
     res.json(animal)
+})
+
+// Delete Animal From DB
+app.delete('/animal/delete', async (req, res) => {
+    const animal = await animalModel.findByIdAndDelete(req.body._id)
+    res.json(animal)
+})
+
+// Create New Animal in Db
+app.post('/animal/new', (req, res) => {
+    const newAnimal = new animalModel({
+        name: req.body.name,
+        type: req.body.type,
+        image: req.body.image
+    })
+
+    // Save to DB
+    newAnimal.save()
+    res.json(newAnimal)
 })
 
 
