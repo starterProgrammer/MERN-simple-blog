@@ -2,7 +2,7 @@ import './App.css';
 
 import { useEffect, useState } from 'react'
 
-const BASE_URL = "http://localhost:3001/"
+const BASE_URL = "https://mern-simple-blog-c5oe.onrender.com/"
 function App() {
 
   const [animals, setAnimals] = useState([])
